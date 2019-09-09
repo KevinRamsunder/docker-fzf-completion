@@ -48,7 +48,7 @@ _fzf_complete_docker() {
             _fzf_complete_docker_run "$@"
             return
         ;;
-        exec|rm|restart|stop)
+        exec|rm|restart|stop|logs)
             _fzf_complete_docker_container "$@"
             return
         ;;
