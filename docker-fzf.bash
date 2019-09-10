@@ -28,7 +28,7 @@ _fzf_complete_docker_container_post() {
 
 _fzf_complete_docker_container () {
     _fzf_complete "$DOCKER_FZF_PREFIX -m --header-lines=1" "$@" < <(
-        docker ps -a
+        docker ps
     )
 }
 
@@ -49,7 +49,7 @@ _fzf_complete_docker() {
                 _fzf_complete_docker_run "$@"
                 return
             ;;
-            exec|rm)
+            exec|rm|restart|stop|logs)
                 _fzf_complete_docker_container "$@"
                 return
             ;;
