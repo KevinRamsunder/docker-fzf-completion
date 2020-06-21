@@ -31,6 +31,11 @@ _fzf_complete_docker_container () {
         docker ps
     )
 }
+_fzf_complete_docker_context () {
+    _fzf_complete "$DOCKER_FZF_PREFIX -m --header-lines=1" "$@" < <(
+        docker context ls
+    )
+}
 
 
 _fzf_complete_docker() {
@@ -54,6 +59,19 @@ _fzf_complete_docker() {
         ;;
         save|load|push|pull|tag|rmi)
             _fzf_complete_docker_common "$@"
+            return
+        ;;
+    esac
+
+    if [ $docker_command != "context" ]; then
+        return
+    fi
+
+    docker_subcommand=${tokens[3]}
+
+    case "$docker_subcommand" in
+        inspect|update|use|rm)
+            _fzf_complete_docker_context "$@"
             return
         ;;
     esac
