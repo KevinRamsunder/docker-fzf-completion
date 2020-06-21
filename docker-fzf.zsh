@@ -36,7 +36,9 @@ _fzf_complete_docker_context () {
         docker context ls
     )
 }
-
+_fzf_complete_docker_context_post () {
+    awk '{print $1}'
+}
 
 _fzf_complete_docker() {
     local tokens docker_command
